@@ -1,0 +1,68 @@
+﻿@model Mhotivo.Models.PensumRegisterModel
+
+@{
+    ViewBag.Title = "Nuevo Pensum";
+    Layout = "";
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div id="body" class="modal-body" style="max-height: 500px;">
+
+@using (Html.BeginForm("Add", "Pensum", FormMethod.Post, new { id = "Form", @class="form-horizontal", @Style="margin:0;"}))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Nuevo Pensum</legend>
+        
+        <p class="text-error">
+            @Html.ValidationMessageFor(model => model.CourseId)
+            @Html.ValidationMessageFor(model => model.Grade)
+        </p>
+        
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.Grade)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.Grade)
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.CourseId)
+            </div>
+            <div class="controls">
+                @Html.DropDownList("CourseId")
+            </div>
+        </div>
+        
+        @*<div class="control-group">
+            <div class="controls">
+                <div class="control-label" style=" width: 60px;  padding-top: 0;">
+                    @Html.LabelFor(model => model.Status, new {@style="text-align: left; margin-left: 0;"})
+                </div>
+                @Html.CheckBoxFor(model => model.Status,new { @style="-ms-opacity: 1; opacity: 1; margin-top: 1px;"})
+            </div>
+        </div>*@
+
+        <div class="space"></div>
+
+        <div class="modal-footer">
+            <button data-dismiss="modal" class="btn btn-small">
+                <i class="icon-remove"></i>
+                Cancelar
+            </button>
+
+            <button type="submit" class="btn btn-small btn-primary">
+                <i class="icon-ok"></i>
+                Crear
+            </button>
+        </div>
+    </fieldset>
+}
+
+</div>
